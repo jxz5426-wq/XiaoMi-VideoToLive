@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(D:\\\\program files\\\\Android\\\\Android Studio\\\\jbr\\\\bin\\\\java.exe *)"
+    ]
+  }
+}

@@ -1,0 +1,52 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.videotolive.app'
+    compileSdk 34
+
+    // 签名配置
+    signingConfigs {
+        release {
+            storeFile file('videotolive.jks')
+            storePassword 'vtl2026!'
+            keyAlias 'videotolive'
+            keyPassword 'vtl2026!'
+        }
+    }
+
+    defaultConfig {
+        applicationId "com.videotolive.app"
+        minSdk 26
+        targetSdk 34
+        // versionCode 自动递增：基于时间戳，每次 build 都不一样
+        def vc = ((System.currentTimeMillis() / 60000) - 29600000).toInteger()
+        versionCode vc
+        versionName "1.0.0"
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            signingConfig signingConfigs.debug
+            minifyEnabled false
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.11.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+}
